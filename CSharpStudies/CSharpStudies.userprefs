@@ -1,0 +1,15 @@
+﻿<Properties StartupConfiguration="{4C431BBF-B680-4527-90B6-852002028738}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="CSharpStudies/LambdaDelegateAnonymous.cs">
+    <Files>
+      <File FileName="CSharpStudies/Program.cs" Line="1" Column="1" />
+      <File FileName="CSharpStudies/LambdaDelegateAnonymous.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.CSharpStudies PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>
