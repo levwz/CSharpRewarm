@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpStudies
+namespace LevwzConsoleApp
 {
     delegate void voidDelegate(string input);
     class DelegateAndEvents
@@ -21,7 +21,7 @@ namespace CSharpStudies
             object[] objects = strings;
 
             
-            objects[0] = new Int64();
+            objects[0] = new Int64().ToString();
 
 
         }

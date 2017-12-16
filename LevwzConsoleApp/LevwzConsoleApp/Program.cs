@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 
-namespace CSharpStudies
+namespace LevwzConsoleApp
 {
 
     [StructLayout(LayoutKind.Sequential)]
@@ -160,6 +160,10 @@ namespace CSharpStudies
             DelegateEventsTest det = new DelegateEventsTest();
 
             det.Test();
+
+            GenericDictionary td = new GenericDictionary();
+
+            td.Test();
 
             Console.Read();
         }
