@@ -9,7 +9,7 @@ namespace LevwzConsoleApp
     class SingletonInstance<T> where T : class, new ()
     {
         private static readonly object locker = new object();
-        private string name;
+        private static string name;
         public string Name { get { return name; } set { name = value; } }
         private static SingletonInstance<T> myself = null;
 
