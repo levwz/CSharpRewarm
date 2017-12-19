@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace LevwzConsoleApp
 {
     delegate void voidDelegate(string input);
+    delegate int ConvertSum<T, X>(T input1, X input2);
     class DelegateAndEvents
     {
         public void VoidMethod(string input)
@@ -24,6 +25,15 @@ namespace LevwzConsoleApp
             objects[0] = new Int64().ToString();
 
 
+        }
+
+        public int Sum<X, Y>(X x, Y y) 
+        {
+            if (typeof(X).Equals(typeof(int)) && typeof(Y).Equals(typeof(int)))
+            {
+                return 1;
+            }
+            return 0;
         }
 
         static void HandleDemoEvent(object sender, EventArgs e)
@@ -81,6 +91,48 @@ namespace LevwzConsoleApp
         }
     }
    
+    public class GameInfo: EventArgs
+    {
+        public GameInfo(string name)
+        {
+            Name = name;
+            Console.WriteLine($"The game name is {Name}");
+        }
+        public string Name { get; }
+    }
+
+    public class Publisher
+    {
+        public event EventHandler<GameInfo> Notify;
+        
+        public void PublishNewGame(string name)
+        {            
+            Console.WriteLine($"We are pleased to announce the new game {name}");
+            Notify?.Invoke(this, new GameInfo(name));
+        }
+
+        public Publisher(string name)
+        {
+            Name = name;
+        }
+
+        public string Name { get; }
+    }
+
+    public class Player
+    {
+        public void Subscribe(object o, GameInfo e)
+        {
+            Console.WriteLine($"{Name} says {e.Name} published by {((Publisher)o).Name} is awesome");
+        }
+
+        public Player(string name)
+        {
+            Name = name;
+        }
+
+        public string Name { get; }
+    }
 
     class DelegateEventsTest
     {
@@ -96,6 +148,27 @@ namespace LevwzConsoleApp
             vd("test delegate again");
 
             dae.Test();
+
+            Publisher pub = new Publisher("Activation");
+
+            Player p1 = new Player("zhouwei");
+
+            pub.Notify += p1.Subscribe;
+
+            pub.PublishNewGame("COD 4, Morden warfare");
+
+            Player p2 = new Player("dengmin");
+
+            pub.Notify += p2.Subscribe;
+
+            pub.PublishNewGame("COD6, Morden warfare II");
+
+            Player p3 = new Player("winner");
+
+            pub.Notify -= p2.Subscribe;
+            pub.Notify += p3.Subscribe;
+
+            pub.PublishNewGame("COD8, Infinte warfare");
 
             
         }
