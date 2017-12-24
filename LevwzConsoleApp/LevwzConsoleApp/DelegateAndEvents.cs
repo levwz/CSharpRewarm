@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -101,17 +102,61 @@ namespace LevwzConsoleApp
         public string Name { get; }
     }
 
-    public class Publisher
+    
+    public class GamePublisher
     {
-        public event EventHandler<GameInfo> Notify;
+        private class WeakDelegate
+        {
+            public WeakReference Target;
+            public MethodInfo Method;
+        }
+        public event EventHandler<GameInfo> Subscribe;
         
-        public void PublishNewGame(string name)
-        {            
-            Console.WriteLine($"We are pleased to announce the new game {name}");
-            Notify?.Invoke(this, new GameInfo(name));
+
+        private List<WeakDelegate> weakSubscribers = new List<WeakDelegate>();
+        public event EventHandler<GameInfo> WeakSubscribe
+        {
+            add
+            {
+                weakSubscribers.Add(new WeakDelegate
+                {
+                    Target = new WeakReference(value.Target),
+                    Method = value.Method
+                    
+                });
+            }
+            remove
+            {
+                
+            }
         }
 
-        public Publisher(string name)
+        public void WeakPublish(string name)
+        {
+            List<WeakDelegate> toRemove = new List<WeakDelegate>();
+            foreach(WeakDelegate subscriber in weakSubscribers)
+            {
+                object target = subscriber.Target.Target;
+                if(target == null)
+                {
+                    toRemove.Add(subscriber);
+                }
+                else
+                {
+                    subscriber.Method.Invoke(target, new object[] { this, new GameInfo(name) });
+                }
+            }
+
+            weakSubscribers.RemoveAll(delegate (WeakDelegate d) { return toRemove.Contains(d); });
+        }             
+
+        public void Publish(string name)
+        {            
+            Console.WriteLine($"We are pleased to announce the new game {name}");
+            Subscribe?.Invoke(this, new GameInfo(name));
+        }
+
+        public GamePublisher(string name)
         {
             Name = name;
         }
@@ -121,17 +166,42 @@ namespace LevwzConsoleApp
 
     public class Player
     {
-        public void Subscribe(object o, GameInfo e)
+        private WeakReference<GamePublisher> publisher;
+        public WeakReference<GamePublisher> Publiser { set { publisher = value; } }
+
+        public void Unsubscribe()
         {
-            Console.WriteLine($"{Name} says {e.Name} published by {((Publisher)o).Name} is awesome");
+            if(publisher== null)
+            {
+                return;
+            }
+
+            
+        }
+        public void Preorder(object o, GameInfo e)
+        {
+            Console.WriteLine($"{Name} says {e.Name} published by {((GamePublisher)o).Name} is awesome");
         }
 
         public Player(string name)
         {
+            placeHolder = new List<string>();
+            int x = 0;
+            while(x++ <= 100)
+            {
+                placeHolder.Add( "place holder{0}"+ x);
+            }
             Name = name;
         }
 
         public string Name { get; }
+
+        public List<string> placeHolder;
+    }
+
+    public class WeakPlayer
+    {
+        private WeakReference Target;
     }
 
     class DelegateEventsTest
@@ -148,29 +218,54 @@ namespace LevwzConsoleApp
             vd("test delegate again");
 
             dae.Test();
+            int x = 0;
+            int y = 0;
 
-            Publisher pub = new Publisher("Activation");
+            
+                GamePublisher pub = new GamePublisher("Activation");
 
             Player p1 = new Player("zhouwei");
 
-            pub.Notify += p1.Subscribe;
+            pub.Subscribe += p1.Preorder;
 
-            pub.PublishNewGame("COD 4, Morden warfare");
+            p1.Publiser = new WeakReference<GamePublisher>(pub);
+
+
+            pub.Publish("COD 4, Morden warfare");
 
             Player p2 = new Player("dengmin");
 
-            pub.Notify += p2.Subscribe;
+                pub.Subscribe += p2.Preorder;
 
-            pub.PublishNewGame("COD6, Morden warfare II");
+            pub.Publish("COD6, Morden warfare II");
 
             Player p3 = new Player("winner");
 
-            pub.Notify -= p2.Subscribe;
-            pub.Notify += p3.Subscribe;
+            pub.Subscribe -= p2.Preorder;
+            pub.Subscribe += p3.Preorder;
 
-            pub.PublishNewGame("COD8, Infinte warfare");
+            pub.WeakPublish("test Name");
+
+            pub.WeakSubscribe += p3.Preorder;
 
             
+            Player p4 = new Player("Infinate" + x);
+            pub.WeakSubscribe += p4.Preorder;
+            pub.WeakPublish("test name 2");
+            //pub.Publish("COD8, Infinte warfare");
+
+
+                //    y++;
+            Player p5 = new Player("infinite-loop"+5);
+            pub.Subscribe += p5.Preorder;
+
+            pub.Publish("dummy release");
+
+            
+
+
+
+
         }
     }
 }
