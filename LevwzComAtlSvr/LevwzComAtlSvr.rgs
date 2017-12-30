@@ -1,0 +1,16 @@
+HKCR
+{
+	NoRemove CLSID
+		{
+			ForceRemove {7A17AE8C-6C09-4954-93EE-A2478F4B5855} = s 'LevwzComAtlSvr class'
+			{
+				ForceRemove Programmable
+				LocalServer32 = s '%MODULE%'
+				{
+					val ServerExecutable = s '%MODULE_RAW%'
+				}
+				TypeLib = s '{C38792E5-33B6-4B3B-83F8-38AE3CC469F1}'
+				Version = s '1.0'
+			}
+		}
+}
