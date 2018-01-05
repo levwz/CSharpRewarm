@@ -47,7 +47,7 @@
 #include "LevwzComAtlSvr_i.h"
 
 #define TYPE_FORMAT_STRING_SIZE   47                                
-#define PROC_FORMAT_STRING_SIZE   139                               
+#define PROC_FORMAT_STRING_SIZE   215                               
 #define EXPR_FORMAT_STRING_SIZE   1                                 
 #define TRANSMIT_AS_TABLE_SIZE    0            
 #define WIRE_MARSHAL_TABLE_SIZE   1            
@@ -189,17 +189,17 @@ static const LevwzComAtlSvr_MIDL_PROC_FORMAT_STRING LevwzComAtlSvr__MIDL_ProcFor
 /* 86 */	0x8,		/* FC_LONG */
 			0x0,		/* 0 */
 
-	/* Procedure Add */
+	/* Procedure StartTcpIpService */
 
 /* 88 */	0x33,		/* FC_AUTO_HANDLE */
 			0x6c,		/* Old Flags:  object, Oi2 */
 /* 90 */	NdrFcLong( 0x0 ),	/* 0 */
-/* 94 */	NdrFcShort( 0x7 ),	/* 7 */
-/* 96 */	NdrFcShort( 0x28 ),	/* X64 Stack size/offset = 40 */
-/* 98 */	NdrFcShort( 0x10 ),	/* 16 */
-/* 100 */	NdrFcShort( 0x24 ),	/* 36 */
+/* 94 */	NdrFcShort( 0x8 ),	/* 8 */
+/* 96 */	NdrFcShort( 0x20 ),	/* X64 Stack size/offset = 32 */
+/* 98 */	NdrFcShort( 0x24 ),	/* 36 */
+/* 100 */	NdrFcShort( 0x8 ),	/* 8 */
 /* 102 */	0x44,		/* Oi2 Flags:  has return, has ext, */
-			0x4,		/* 4 */
+			0x3,		/* 3 */
 /* 104 */	0xa,		/* 10 */
 			0x1,		/* Ext Flags:  new corr desc, */
 /* 106 */	NdrFcShort( 0x0 ),	/* 0 */
@@ -207,32 +207,96 @@ static const LevwzComAtlSvr_MIDL_PROC_FORMAT_STRING LevwzComAtlSvr__MIDL_ProcFor
 /* 110 */	NdrFcShort( 0x0 ),	/* 0 */
 /* 112 */	NdrFcShort( 0x0 ),	/* 0 */
 
-	/* Parameter para1 */
+	/* Parameter lport */
 
 /* 114 */	NdrFcShort( 0x48 ),	/* Flags:  in, base type, */
 /* 116 */	NdrFcShort( 0x8 ),	/* X64 Stack size/offset = 8 */
 /* 118 */	0x8,		/* FC_LONG */
 			0x0,		/* 0 */
 
-	/* Parameter para2 */
+	/* Parameter plPort */
 
-/* 120 */	NdrFcShort( 0x48 ),	/* Flags:  in, base type, */
+/* 120 */	NdrFcShort( 0x148 ),	/* Flags:  in, base type, simple ref, */
 /* 122 */	NdrFcShort( 0x10 ),	/* X64 Stack size/offset = 16 */
 /* 124 */	0x8,		/* FC_LONG */
 			0x0,		/* 0 */
 
-	/* Parameter result */
+	/* Return value */
 
-/* 126 */	NdrFcShort( 0x2150 ),	/* Flags:  out, base type, simple ref, srv alloc size=8 */
+/* 126 */	NdrFcShort( 0x70 ),	/* Flags:  out, return, base type, */
 /* 128 */	NdrFcShort( 0x18 ),	/* X64 Stack size/offset = 24 */
 /* 130 */	0x8,		/* FC_LONG */
 			0x0,		/* 0 */
 
+	/* Procedure StopTcpIpService */
+
+/* 132 */	0x33,		/* FC_AUTO_HANDLE */
+			0x6c,		/* Old Flags:  object, Oi2 */
+/* 134 */	NdrFcLong( 0x0 ),	/* 0 */
+/* 138 */	NdrFcShort( 0x9 ),	/* 9 */
+/* 140 */	NdrFcShort( 0x10 ),	/* X64 Stack size/offset = 16 */
+/* 142 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 144 */	NdrFcShort( 0x8 ),	/* 8 */
+/* 146 */	0x44,		/* Oi2 Flags:  has return, has ext, */
+			0x1,		/* 1 */
+/* 148 */	0xa,		/* 10 */
+			0x1,		/* Ext Flags:  new corr desc, */
+/* 150 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 152 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 154 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 156 */	NdrFcShort( 0x0 ),	/* 0 */
+
 	/* Return value */
 
-/* 132 */	NdrFcShort( 0x70 ),	/* Flags:  out, return, base type, */
-/* 134 */	NdrFcShort( 0x20 ),	/* X64 Stack size/offset = 32 */
-/* 136 */	0x8,		/* FC_LONG */
+/* 158 */	NdrFcShort( 0x70 ),	/* Flags:  out, return, base type, */
+/* 160 */	NdrFcShort( 0x8 ),	/* X64 Stack size/offset = 8 */
+/* 162 */	0x8,		/* FC_LONG */
+			0x0,		/* 0 */
+
+	/* Procedure Add */
+
+/* 164 */	0x33,		/* FC_AUTO_HANDLE */
+			0x6c,		/* Old Flags:  object, Oi2 */
+/* 166 */	NdrFcLong( 0x0 ),	/* 0 */
+/* 170 */	NdrFcShort( 0x7 ),	/* 7 */
+/* 172 */	NdrFcShort( 0x28 ),	/* X64 Stack size/offset = 40 */
+/* 174 */	NdrFcShort( 0x10 ),	/* 16 */
+/* 176 */	NdrFcShort( 0x24 ),	/* 36 */
+/* 178 */	0x44,		/* Oi2 Flags:  has return, has ext, */
+			0x4,		/* 4 */
+/* 180 */	0xa,		/* 10 */
+			0x1,		/* Ext Flags:  new corr desc, */
+/* 182 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 184 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 186 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 188 */	NdrFcShort( 0x0 ),	/* 0 */
+
+	/* Parameter para1 */
+
+/* 190 */	NdrFcShort( 0x48 ),	/* Flags:  in, base type, */
+/* 192 */	NdrFcShort( 0x8 ),	/* X64 Stack size/offset = 8 */
+/* 194 */	0x8,		/* FC_LONG */
+			0x0,		/* 0 */
+
+	/* Parameter para2 */
+
+/* 196 */	NdrFcShort( 0x48 ),	/* Flags:  in, base type, */
+/* 198 */	NdrFcShort( 0x10 ),	/* X64 Stack size/offset = 16 */
+/* 200 */	0x8,		/* FC_LONG */
+			0x0,		/* 0 */
+
+	/* Parameter result */
+
+/* 202 */	NdrFcShort( 0x2150 ),	/* Flags:  out, base type, simple ref, srv alloc size=8 */
+/* 204 */	NdrFcShort( 0x18 ),	/* X64 Stack size/offset = 24 */
+/* 206 */	0x8,		/* FC_LONG */
+			0x0,		/* 0 */
+
+	/* Return value */
+
+/* 208 */	NdrFcShort( 0x70 ),	/* Flags:  out, return, base type, */
+/* 210 */	NdrFcShort( 0x20 ),	/* X64 Stack size/offset = 32 */
+/* 212 */	0x8,		/* FC_LONG */
 			0x0,		/* 0 */
 
 			0x0
@@ -385,7 +449,9 @@ static const unsigned short IAtlObjectEx_FormatStringOffsetTable[] =
     (unsigned short) -1,
     (unsigned short) -1,
     (unsigned short) -1,
-    38
+    38,
+    88,
+    132
     };
 
 static const MIDL_STUBLESS_PROXY_INFO IAtlObjectEx_ProxyInfo =
@@ -409,7 +475,7 @@ static const MIDL_SERVER_INFO IAtlObjectEx_ServerInfo =
     0,
     0,
     0};
-CINTERFACE_PROXY_VTABLE(8) _IAtlObjectExProxyVtbl = 
+CINTERFACE_PROXY_VTABLE(10) _IAtlObjectExProxyVtbl = 
 {
     &IAtlObjectEx_ProxyInfo,
     &IID_IAtlObjectEx,
@@ -420,7 +486,9 @@ CINTERFACE_PROXY_VTABLE(8) _IAtlObjectExProxyVtbl =
     0 /* IDispatch::GetTypeInfo */ ,
     0 /* IDispatch::GetIDsOfNames */ ,
     0 /* IDispatch_Invoke_Proxy */ ,
-    (void *) (INT_PTR) -1 /* IAtlObjectEx::DoInitSomething */
+    (void *) (INT_PTR) -1 /* IAtlObjectEx::DoInitSomething */ ,
+    (void *) (INT_PTR) -1 /* IAtlObjectEx::StartTcpIpService */ ,
+    (void *) (INT_PTR) -1 /* IAtlObjectEx::StopTcpIpService */
 };
 
 
@@ -430,6 +498,8 @@ static const PRPC_STUB_FUNCTION IAtlObjectEx_table[] =
     STUB_FORWARDING_FUNCTION,
     STUB_FORWARDING_FUNCTION,
     STUB_FORWARDING_FUNCTION,
+    NdrStubCall2,
+    NdrStubCall2,
     NdrStubCall2
 };
 
@@ -437,7 +507,7 @@ CInterfaceStubVtbl _IAtlObjectExStubVtbl =
 {
     &IID_IAtlObjectEx,
     &IAtlObjectEx_ServerInfo,
-    8,
+    10,
     &IAtlObjectEx_table[-3],
     CStdStubBuffer_DELEGATING_METHODS
 };
@@ -453,7 +523,7 @@ static const unsigned short IAtlObject_FormatStringOffsetTable[] =
     (unsigned short) -1,
     (unsigned short) -1,
     (unsigned short) -1,
-    88
+    164
     };
 
 static const MIDL_STUBLESS_PROXY_INFO IAtlObject_ProxyInfo =

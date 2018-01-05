@@ -268,6 +268,12 @@ EXTERN_C const IID IID_IAtlObjectEx;
             /* [out][in] */ LONG *param2,
             /* [retval][out] */ LONG *result) = 0;
         
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE StartTcpIpService( 
+            /* [in] */ LONG lport,
+            LONG *plPort) = 0;
+        
+        virtual /* [id] */ HRESULT STDMETHODCALLTYPE StopTcpIpService( void) = 0;
+        
     };
     
     
@@ -332,6 +338,14 @@ EXTERN_C const IID IID_IAtlObjectEx;
             /* [out][in] */ LONG *param2,
             /* [retval][out] */ LONG *result);
         
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *StartTcpIpService )( 
+            IAtlObjectEx * This,
+            /* [in] */ LONG lport,
+            LONG *plPort);
+        
+        /* [id] */ HRESULT ( STDMETHODCALLTYPE *StopTcpIpService )( 
+            IAtlObjectEx * This);
+        
         END_INTERFACE
     } IAtlObjectExVtbl;
 
@@ -370,6 +384,12 @@ EXTERN_C const IID IID_IAtlObjectEx;
 
 #define IAtlObjectEx_DoInitSomething(This,param1,param2,result)	\
     ( (This)->lpVtbl -> DoInitSomething(This,param1,param2,result) ) 
+
+#define IAtlObjectEx_StartTcpIpService(This,lport,plPort)	\
+    ( (This)->lpVtbl -> StartTcpIpService(This,lport,plPort) ) 
+
+#define IAtlObjectEx_StopTcpIpService(This)	\
+    ( (This)->lpVtbl -> StopTcpIpService(This) ) 
 
 #endif /* COBJMACROS */
 
