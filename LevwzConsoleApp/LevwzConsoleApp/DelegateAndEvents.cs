@@ -73,6 +73,7 @@ namespace LevwzConsoleApp
 
     class LambdaTest
     {
+        public void test() => LambdaTests();
         public void LambdaTests()
         {
             Func<int, int, int> func = (x, y) => (x * y);
@@ -212,6 +213,7 @@ namespace LevwzConsoleApp
             at.Test();
             LambdaTest lt = new LambdaTest();
             lt.LambdaTests();
+            lt.test();
             DelegateAndEvents dae = new DelegateAndEvents();
             voidDelegate vd = new voidDelegate(dae.VoidMethod);
 

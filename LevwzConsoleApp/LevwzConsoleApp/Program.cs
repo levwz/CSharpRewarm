@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LevwzConsoleApp.Generic;
 using System.Runtime.InteropServices;
 
 namespace LevwzConsoleApp
@@ -90,6 +91,17 @@ namespace LevwzConsoleApp
     {
         static void Main(string[] args)
         {
+            EnumSample es = new EnumSample();
+            es.Test();
+            System.Console.WriteLine(new structSample(12, 22).Diagnoal);
+
+            structSample ss = new structSample(1, 2);
+          //  ss.Length = 11;
+            //ss.Width = 22;
+            System.Console.WriteLine(ss.Diagnoal);
+
+            System.Console.WriteLine(StaticClass.cc);
+            
             Person jon = new Person("Jon");
            
             StringProcessor jonsVoice, tomsVoice, background;
@@ -164,6 +176,28 @@ namespace LevwzConsoleApp
             GenericDictionary td = new GenericDictionary();
 
             td.Test();
+            PartialClassSampleInvoker pcsi = new PartialClassSampleInvoker();
+
+            pcsi.Test();
+
+            ExtensionClass ec = new ExtensionClass();
+            ec.Test();
+
+            OverrideAndHiddenSample oahs = new OverrideAndHiddenSample();
+
+            oahs.Test();
+
+            AsAndIsSample aais = new AsAndIsSample();
+            aais.Test();
+
+            WeakReferenceSample srs = new WeakReferenceSample();
+            srs.Test();
+
+            LinkedListSample lls = new LinkedListSample();
+            lls.Test();
+
+            CoContraVarianceIsMakeSureConvertFromDerivedToBase iovs = new CoContraVarianceIsMakeSureConvertFromDerivedToBase();
+            iovs.Test();
 
             Console.Read();
         }
